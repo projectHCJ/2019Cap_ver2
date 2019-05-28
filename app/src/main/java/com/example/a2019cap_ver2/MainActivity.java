@@ -3,6 +3,7 @@ package com.example.a2019cap_ver2;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,9 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ViewPager viewPager ;
+    private MyPagerAdapter pagerAdapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,11 @@ public class MainActivity extends AppCompatActivity
         //네비게이션뷰 인플레이션 및 이벤트 리스너 설정
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //뷰페이저 설정
+        viewPager = (ViewPager) findViewById(R.id.viewPager) ;
+        pagerAdapter = new MyPagerAdapter(this) ;
+        viewPager.setAdapter(pagerAdapter) ;
     }
 
     @Override
