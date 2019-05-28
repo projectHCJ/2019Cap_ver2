@@ -5,34 +5,16 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="홈으로" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_bookmark"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="최근검색 / 즐겨찾기" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_mypage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="마이 페이지" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
-
 </menu>
