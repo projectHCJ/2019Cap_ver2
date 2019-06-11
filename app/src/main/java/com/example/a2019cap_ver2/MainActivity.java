@@ -156,6 +156,10 @@ public class MainActivity extends AppCompatActivity
         changeManager = new FragmentChangeManager(getSupportFragmentManager());
         changeManager.putFragment("Main", new MainFragment());
         changeManager.putFragment("Recommend", new RecommendFragment());
+        changeManager.putFragment("MyPage", new MyPageFragment());
+        changeManager.putFragment("DetailedCafe", new DetailedCafeFragment());
+        changeManager.putFragment("RegistCafe", new RegistCafeFragment());
+        changeManager.putFragment("RegistOwner", new RegistOwnerFragment());
 
         //첫 화면은 Main화면
         changeManager.replaceFragment("Main");
