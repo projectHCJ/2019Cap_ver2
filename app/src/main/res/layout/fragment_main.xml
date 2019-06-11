@@ -8,8 +8,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity">
 
-    <include
-        layout="@layout/app_bar_main"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
@@ -138,6 +136,7 @@
             android:text="그라운드 추천" />
 
         <TextView
+            android:id="@+id/txtRecommend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"

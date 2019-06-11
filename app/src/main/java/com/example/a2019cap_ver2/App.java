@@ -14,6 +14,27 @@ public class App extends Application {
 
     private static volatile App instance = null;
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
+
+        KakaoSDK.init(new KakaoSDKAdapter());
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        instance = null;
+    }
+    public static App getGlobalApplicationContext() {
+        if(instance == null) {
+            throw new IllegalStateException("this application does not inherit com.kakao.GlobalApplication");
+        }
+        return instance;
+    }
+
+
     private static class KakaoSDKAdapter extends KakaoAdapter {
         /**
          * Session Config에 대해서는 default값들이 존재한다.
@@ -22,7 +43,6 @@ public class App extends Application {
          */
         // 카카오 로그인 세션을 불러올 때의 설정값을 설정하는 부분.
         public ISessionConfig getSessionConfig() {
-
             return new ISessionConfig() {
                 @Override
                 public AuthType[] getAuthTypes() {
@@ -32,9 +52,7 @@ public class App extends Application {
                     KAKAO_TALK_EXCLUDE_NATIVE_LOGIN: 카카오톡으로만 로그인+계정 없으면 계정생성 버튼 제공
                     KAKAO_LOGIN_ALL: 모든 로그인방식 사용 가능. 정확히는, 카카오톡이나 카카오스토리가 있으면 그 쪽으로 로그인 기능을 제공하고, 둘 다 없으면 웹뷰를 통한 로그인을 제공한다.
                      */
-
                 }
-
                 @Override
                 public boolean isUsingWebviewTimer() {
                     return false;
@@ -42,19 +60,16 @@ public class App extends Application {
                     // true 를 리턴할경우 webview로그인을 사용하는 화면서 모든 webview에 onPause와 onResume 시에 Timer를 설정해 주어야 한다.
                     // 지정하지 않을 시 false로 설정된다.
                 }
-
                 @Override
                 public boolean isSecureMode() {
                     return false;
                     // 로그인시 access token과 refresh token을 저장할 때의 암호화 여부를 결정한다.
                 }
-
                 @Override
                 public ApprovalType getApprovalType() {
                     return ApprovalType.INDIVIDUAL;
                     // 일반 사용자가 아닌 Kakao와 제휴된 앱에서만 사용되는 값으로, 값을 채워주지 않을경우 ApprovalType.INDIVIDUAL 값을 사용하게 된다.
                 }
-
                 @Override
                 public boolean isSaveFormData() {
                     return true;
@@ -75,26 +90,9 @@ public class App extends Application {
         }
     }
 
-    public static App getGlobalApplicationContext() {
-        if(instance == null) {
-            throw new IllegalStateException("this application does not inherit com.kakao.GlobalApplication");
-        }
-        return instance;
-    }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        instance = this;
 
-        KakaoSDK.init(new KakaoSDKAdapter());
-    }
 
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
-        instance = null;
-    }
 
 //[출처] 안드로이드에서 카카오 로그인 API 적용하기 (2) : 버튼 클릭 시 로그인 수행하기|작성자 Candykick
 }

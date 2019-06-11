@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+
     <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,11 +15,18 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-        <fragment
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.example.a2019cap_ver2.MainFragment"
-            tools:layout="@layout/content_main"/>
+            android:orientation="vertical">
+            <include
+                layout="@layout/app_bar_main"/>
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"
