@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -35,14 +33,10 @@ import com.kakao.usermgmt.callback.MeV2ResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
 import com.kakao.util.exception.KakaoException;
 
-import java.io.BufferedInputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
@@ -51,36 +45,6 @@ public class MainActivity extends AppCompatActivity
 
     FragmentChangeManager changeManager;
     private SessionCallback sessionCallback;
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        /*
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        LinearLayout v = (LinearLayout)navigationView.getHeaderView(0);
-
-        if(sessionCallback.mNickname == null){
-            //접속된 세션이 없다면 로그인 버튼 표시
-            com.kakao.usermgmt.LoginButton button = new com.kakao.usermgmt.LoginButton(this);
-            v.addView(button);
-        }else{
-            //접속된 세션이 있다면 로그인 화면 구성해서 보여주기
-            TextView txtNickName = new TextView(this);
-            TextView txtProfileImgSrc = new TextView(this);
-
-            String strNickname = sessionCallback.mNickname;
-            String strProfile = sessionCallback.mProfile;
-
-            txtNickName.setText(strNickname);
-            txtProfileImgSrc.setText(strProfile);
-
-            v.setOrientation(LinearLayout.VERTICAL);
-
-            v.addView(txtNickName);
-            v.addView(txtProfileImgSrc);
-        }
-        */
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +124,7 @@ public class MainActivity extends AppCompatActivity
         changeManager.putFragment("DetailedCafe", new DetailedCafeFragment());
         changeManager.putFragment("RegistCafe", new RegistCafeFragment());
         changeManager.putFragment("RegistOwner", new RegistOwnerFragment());
+        changeManager.putFragment("Bookmark", new BookmarkFragment());
 
         //첫 화면은 Main화면
         changeManager.replaceFragment("Main");
