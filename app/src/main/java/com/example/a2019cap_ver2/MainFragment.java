@@ -6,13 +6,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 public class MainFragment extends Fragment {
     private ViewPager viewPager ;
-    private MyPagerAdapter pagerAdapter ;
+    private MyAdPagerAdapter pagerAdapter ;
 
     private MainActivity mainAct;
 
@@ -41,7 +45,7 @@ public class MainFragment extends Fragment {
 
         //뷰페이저 설정
         viewPager = view.findViewById(R.id.viewPager) ;
-        pagerAdapter = new MyPagerAdapter(getContext()) ;
+        pagerAdapter = new MyAdPagerAdapter(getContext()) ;
         viewPager.setAdapter(pagerAdapter) ;
 
         view.findViewById(R.id.txtRecommend).setOnClickListener(new View.OnClickListener() {
@@ -50,6 +54,30 @@ public class MainFragment extends Fragment {
                 mainAct.changeManager.replaceFragment("Recommend");
             }
         });
+
+        view.findViewById(R.id.tvBookmarkMore).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainAct.changeManager.replaceFragment("Bookmark");
+            }
+        });
+
+        //북마크, 최근 검색 리사이클 뷰 설정
+        RecyclerView mRecyclerView;
+        RecyclerView.LayoutManager mLayoutManager;
+
+        ArrayList<MainActivity.Cafe> arr = mainAct.cafeArr;
+
+        MyOverViewBookmarkAdapter myAdapter = new MyOverViewBookmarkAdapter(mainAct, arr);
+
+        mRecyclerView = view.findViewById(R.id.rcycBookmark);
+
+        mLayoutManager = new LinearLayoutManager(mainAct);
+        ((LinearLayoutManager)mLayoutManager).setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(myAdapter);
 
         return view;
     }

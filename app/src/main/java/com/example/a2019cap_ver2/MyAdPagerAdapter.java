@@ -6,13 +6,15 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
-public class MyPagerAdapter extends PagerAdapter {
+public class MyAdPagerAdapter extends PagerAdapter {
     private final int pageNum = 10;
     private Context mContext;
 
-    MyPagerAdapter(Context con){
+    private int[] resId = { R.drawable.bs06, R.drawable.bs15, R.drawable.bs17};
+
+    MyAdPagerAdapter(Context con){
         mContext = con;
     }
 
@@ -22,10 +24,10 @@ public class MyPagerAdapter extends PagerAdapter {
         View view = null;
         if(mContext != null){
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.page, container, false);
+            view = inflater.inflate(R.layout.ad_page, container, false);
 
-            TextView txtView = view.findViewById(R.id.txtPageItem);
-            txtView.setText("Text" + position);
+            ImageView imgView = view.findViewById(R.id.imgPageItem);
+            imgView.setImageResource(resId[position]);
         }
 
         container.addView(view);
@@ -39,7 +41,7 @@ public class MyPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return pageNum;
+        return resId.length;
     }
 
     @Override

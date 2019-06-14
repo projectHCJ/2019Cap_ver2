@@ -14,6 +14,12 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="@drawable/border2">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pagerCafeImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -26,25 +32,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tvCafeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="커피와 고양이" />
+                    android:textSize="35dp"
+                    tools:text="CafeName" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <Button
+                    android:id="@+id/btnLocation"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
-                    android:text="위치" />
-
-                <Button
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:text="전화번호" />
+                    android:layout_gravity="right"
+                    android:text="위치 및 연락처" />
             </LinearLayout>
 
             <TextView
@@ -52,17 +57,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="카페소개"
-                android:textSize="25dp" />
+                android:textSize="23dp" />
 
             <TextView
+                android:id="@+id/tvCafeExcplanation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border3"
                 android:lines="8"
                 android:padding="5dp"
-                android:text="ffdlfdslkfjdfdsdsfdsf" />
-
-
+                tools:text="카페 소개입니다" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,71 +92,13 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/border1"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="임시메뉴1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="HOT : 5000원" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ICE : 5200원" />
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rcycleCafeMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </android.support.v7.widget.RecyclerView>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="임시메뉴2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="HOT : 5000원" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ICE : 5200원" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="임시메뉴3" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="HOT : 5000원" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ICE : 5200원" />
-                </LinearLayout>
-
-
             </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -168,34 +114,19 @@
                 android:textSize="25dp" />
 
             <LinearLayout
+                android:id="@+id/linearConvenience"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/wifi" />
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/charging"
-
-                    />
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/parking" />
             </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="코멘트"
                 android:textSize="25dp" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -214,13 +145,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
             </LinearLayout>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
-
 </ScrollView>
