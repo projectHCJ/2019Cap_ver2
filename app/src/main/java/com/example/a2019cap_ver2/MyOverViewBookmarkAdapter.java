@@ -36,7 +36,7 @@ public class MyOverViewBookmarkAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.overview_bookmark_recycler_view, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_overview_bookmark, parent, false);
 
         MyViewHolder myView = new MyViewHolder(v);
 

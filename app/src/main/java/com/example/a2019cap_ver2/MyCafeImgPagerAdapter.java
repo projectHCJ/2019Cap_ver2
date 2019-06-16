@@ -25,7 +25,7 @@ public class MyCafeImgPagerAdapter extends PagerAdapter {
         View view = null;
         if(mContext != null){
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.cafe_image_page, container, false);
+            view = inflater.inflate(R.layout.pager_cafe_image, container, false);
 
             int resId = mContext.getResources().getIdentifier(imgSrcs[position], "drawable", mContext.getPackageName());
 

@@ -33,7 +33,7 @@ public class MyCafeMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cafe_menu_recycler_view, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_cafe_menu, parent, false);
 
         MyCafeMenuAdapter.MyViewHolder myView = new MyCafeMenuAdapter.MyViewHolder(v);
 

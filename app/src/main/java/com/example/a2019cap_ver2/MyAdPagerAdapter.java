@@ -24,7 +24,7 @@ public class MyAdPagerAdapter extends PagerAdapter {
         View view = null;
         if(mContext != null){
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.ad_page, container, false);
+            view = inflater.inflate(R.layout.pager_ad, container, false);
 
             ImageView imgView = view.findViewById(R.id.imgPageItem);
             imgView.setImageResource(resId[position]);
