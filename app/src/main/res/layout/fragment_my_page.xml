@@ -5,34 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MyPageFragment">
+
     <LinearLayout
+        android:id="@+id/layoutMyInfo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#EDEDED"
         android:orientation="horizontal">
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="20dp"
-            android:scaleType="fitCenter"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-            android:text="닉네임"
-            android:textSize="25dp" />
-
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-            android:text="파랑새"
-            android:textSize="15dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,13 +41,13 @@
                 android:layout_gravity="center"
                 android:text="닉네임" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_gravity="center"
-                android:text="파랑새" />
+                tools:text="파랑새" />
 
 
             <Button
@@ -121,8 +101,7 @@
             android:padding="0dp"
             android:text="회원탈퇴"
             android:textSize="7dp"
-            android:background="#FFFFFF"
-            />
+            android:background="#FFFFFF" />
     </LinearLayout>
 
 </LinearLayout>

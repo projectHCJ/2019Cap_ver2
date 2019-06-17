@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,10 +27,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.kakao.auth.ApiErrorCode;
+import com.kakao.auth.AuthType;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.kakao.usermgmt.callback.MeV2ResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
 import com.kakao.util.exception.KakaoException;
@@ -46,14 +49,16 @@ public class MainActivity extends AppCompatActivity
 
     class User{
 
-        User(String userCode, String nickname, String authority){
+        User(String userCode, String nickname, String authority, String profilePath){
             this.userCode = userCode;
             this.nickname = nickname;
             this.authority = authority;
+            this.profilePath = profilePath;
         }
-        private String userCode;
-        private String nickname;
-        private String authority;
+        public String userCode;
+        public String nickname;
+        public String authority;
+        public String profilePath;
     }
 
     class Cafe{
@@ -80,7 +85,6 @@ public class MainActivity extends AppCompatActivity
     ArrayList<Cafe> cafeArr;
 
     private void createTempData(){
-        me = new User("110013", "홍충재", "유저");
 
         cafeArr = new ArrayList<>();
         cafeArr.add(new Cafe("카페리움", "02-784-0034", "서울시 종로구 행촌동", "수면"));
@@ -138,7 +142,7 @@ public class MainActivity extends AppCompatActivity
                         Log.d("D", "Touch");
                         sessionCallback = new SessionCallback();
                         Session.getCurrentSession().addCallback(sessionCallback);
-                        Session.getCurrentSession().checkAndImplicitOpen();
+                        Session.getCurrentSession().open(AuthType.KAKAO_LOGIN_ALL, MainActivity.this);
                     }
 
                     return true;
@@ -149,12 +153,15 @@ public class MainActivity extends AppCompatActivity
             //접속된 세션이 있다면 로그인 화면 구성해서 보여주기
             TextView txtNickName = new TextView(this);
             TextView txtNicknameLabel = new TextView(this);
+            Button btnLogout = new Button(this);
             ImageView imgProfileImgSrc = new ImageView(this);
 
             //로그인 정보 받아오기
             String strID = String.valueOf(intent.getLongExtra("ID", -1));
             String strNickname = intent.getStringExtra("Nickname");
             String strProfile = intent.getStringExtra("Profile");
+
+            me = new User(strID, strNickname, "유저", strProfile);
 
             Log.d("D","User_ID = " + strID);
 
@@ -165,6 +172,26 @@ public class MainActivity extends AppCompatActivity
             //닉네임 및 사진정보 설정
             txtNickName.setText(strNickname);
             Glide.with(this).load(strProfile).apply(bitmapTransform(new CircleCrop())).into(imgProfileImgSrc);
+
+            //버튼 설정
+            btnLogout.setText("로그아웃");
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "정상적으로 로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+                        @Override
+                        public void onCompleteLogout() {
+                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            me = null;
+                            startActivity(intent);
+                        }
+                    });
+
+                }
+            });
 
 
             //레이블과 닉네임을 붙일 레이아웃을 하나 생성
@@ -183,6 +210,7 @@ public class MainActivity extends AppCompatActivity
             //레이아웃에 자식 view(레이블과 닉네임) 추가
             layout.addView(txtNicknameLabel);
             layout.addView(txtNickName, txtNicknameParam);
+            layout.addView(btnLogout);
 
             //헤더View 설정 및 자식View추가
             v.setOrientation(LinearLayout.HORIZONTAL);
@@ -257,7 +285,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_bookmark) {
 
         } else if (id == R.id.nav_mypage) {
-
+            changeManager.replaceFragment("MyPage");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

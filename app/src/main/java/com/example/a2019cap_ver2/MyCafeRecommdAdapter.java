@@ -52,6 +52,17 @@ public class MyCafeRecommdAdapter extends RecyclerView.Adapter<RecyclerView.View
         myViewHolder.imgCafeImg.setImageResource(resId);
         myViewHolder.tvCafeName.setText(cafeArrayList.get(position).cafeName);
 
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainAct = (MainActivity)mContext;
+                Bundle bundle = new Bundle();
+                bundle.putInt("CafeIndex", position);
+                mainAct.changeManager.changeArgument("DetailedCafe", bundle);
+                mainAct.changeManager.replaceFragment("DetailedCafe");
+            }
+        });
+
     }
 
     @Override

@@ -10,8 +10,7 @@ public class LogoActivity extends Activity {
     class LogoSplash implements Runnable{
         @Override
         public void run() {
-
-            //이곳에서 이동
+            //이동및 현재 액티비티를 액티비티 스택에서 제거
             startActivity(new Intent(LogoActivity.this, MainActivity.class));
             LogoActivity.this.finish();
         }
